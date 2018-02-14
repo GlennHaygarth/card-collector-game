@@ -15,20 +15,19 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
-// Card collection route
-Route::get('/collection', function () {
-    $cards = App\Card::all();
-
-    return view('collection.index', compact('cards'));
-});
-
-Route::get('/collection/{card}', function ($id) {
-    
-    $card = DB::table('cards')->find($id);
-
-    return view('collection.show', compact('card'));
-});
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/collection', 'CollectionController@index');
+
+Route::get('/collection/{card}', 'CollectionController@show');
+
+Route::post('/collection', 'CollectionController@addCard');
+
+// Route::post('/collection', function()
+// {
+//     var_dump($_POST);
+
+//     return view('collection.index');
+// });
