@@ -45,32 +45,48 @@
                 <div class="card-header">Overview of all cards</div>
 
                 <div class="card-body">
-                    @foreach ($cards as $card)
-                        <li>
-                            <a href="/collection/{{ $card->id }}">
-                                {{ $card->name }}
-                            </a>
-                            value: {{ $card->value }}
-                            <a href="/collection/add/{{ $card->id }}">
-                                Add this card
-                            </a>
-                        </li>
-                    @endforeach
+                    <table style="width:100%;">
+                        <tr>
+                            <th>Card name</th>
+                            <th>Value</th>
+                            <th style="text-align:center;">Add card to your own deck</th>
+                        </tr>
+                        @foreach ($cards as $card)
+                            <tr>
+                                <td><a href="/collection/{{ $card->id }}">
+                                    {{ $card->name }}
+                                </a></td>
+                                <td>{{ $card->value }}</td>
+                                <td style="text-align:center;"><a href="/collection/add/{{ $card->id }}">
+                                    Add
+                                </a></td>
+                            </tr>
+                        @endforeach
+                    </table>
                 </div>
             </div>
+            <?php
+            $total_value = 0;
+            foreach ($user_cards as $card)
+            {
+                $total_value += $card->value;
+            }
+            ?>
             <div class="card card-default">
-                <div class="card-header">Your deck</div>
+                <div class="card-header">Your deck, total value: <?php echo $total_value ?></div>
 
                 <div class="card-body">
-                    @foreach ($user_cards as $card)
-                        <li>
-                            {{ $card->name }}
-                            value: {{ $card->value }}
-                            <a href="/collection/remove/{{ $card->id }}">
-                                Remove this card
-                            </a>
-                        </li>
-                    @endforeach
+                    <ul style="list-style:none;">
+                        @foreach ($user_cards as $card)
+                            <li>
+                                <div class="card-name"><b>{{ $card->name }}</b></div>
+                                <div class="card-value">value: {{ $card->value }}</div>
+                                <a href="/collection/remove/{{ $card->id }}" class="card-action">
+                                    Remove this card
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>

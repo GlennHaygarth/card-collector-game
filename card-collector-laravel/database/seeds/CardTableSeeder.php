@@ -9,19 +9,24 @@ public function run()
 {
     DB::table('cards')->delete();
     App\Card::create(array(
-        'name'     => 'cardname1',
+        'name'     => 'King',
         'value'     => 10,
-        'description'     => 'card description 1'
+        'description'     => 'The most important card in your deck. Make sure to always safeguard this guy.'
     ));
     App\Card::create(array(
-        'name'     => 'cardname2',
+        'name'     => 'Queen',
+        'value'     => 9,
+        'description'     => 'The second most important card in your deck and probably the strongest fighter.'
+    ));
+    App\Card::create(array(
+        'name'     => 'Rook',
         'value'     => 5,
-        'description'     => 'card description 2'
+        'description'     => 'A solid card that will do well at any stage of the game.'
     ));
     App\Card::create(array(
-        'name'     => 'cardname3',
-        'value'     => 2,
-        'description'     => 'card description 3'
+        'name'     => 'Pawn',
+        'value'     => 1,
+        'description'     => 'A weak card that can be disposed of. Only useful when promoted.'
     ));
 }
 

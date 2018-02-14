@@ -14,7 +14,7 @@ class CollectionController extends Controller
         $this->middleware('auth');
     }
 
-    //
+    // The default index page that show an overview
     public function index()
     {
         $user_cards = Auth::user()->cards()->get();
@@ -24,6 +24,7 @@ class CollectionController extends Controller
         return view('collection.index', compact('cards'), compact('user_cards'));
     }
 
+    // Show a specific card
     public function show($id)
     {
         $card = Card::find($id);
@@ -33,9 +34,11 @@ class CollectionController extends Controller
 
     public function addToDeck($id)
     {
+        // Check if the card is already in the deck before adding it
         if (DB::table('card_user')->where('user_id', Auth::id())->where('card_id', $id)->exists())
         {
-            //card already in deck
+            //card already in the users deck
+            //TODO: notify user
         }
         else
         {
