@@ -7,7 +7,7 @@
             <div class="card card-default">
                 <div class="card-header">Add a new card</div>
                 <div class="card-body">
-                    <form method="POST" action="collection">
+                    <form method="POST" action="/collection">
                         @csrf
 
                         <div class="form-group row">
@@ -51,6 +51,9 @@
                                 {{ $card->name }}
                             </a>
                             value: {{ $card->value }}
+                            <a href="/collection/add/{{ $card->id }}">
+                                Add this card
+                            </a>
                         </li>
                     @endforeach
                 </div>
@@ -63,6 +66,9 @@
                         <li>
                             {{ $card->name }}
                             value: {{ $card->value }}
+                            <a href="/collection/remove/{{ $card->id }}">
+                                Remove this card
+                            </a>
                         </li>
                     @endforeach
                 </div>

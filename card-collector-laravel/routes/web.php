@@ -16,18 +16,10 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/collection', 'CollectionController@index');
-
 Route::get('/collection/{card}', 'CollectionController@show');
-
+Route::get('/collection/add/{card}', 'CollectionController@addToDeck');
+Route::get('/collection/remove/{card}', 'CollectionController@removeFromDeck');
 Route::post('/collection', 'CollectionController@addCard');
-
-// Route::post('/collection', function()
-// {
-//     var_dump($_POST);
-
-//     return view('collection.index');
-// });
