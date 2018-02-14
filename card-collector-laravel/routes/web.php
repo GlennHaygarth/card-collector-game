@@ -15,6 +15,20 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
+// Card collection route
+Route::get('/collection', function () {
+    $cards = App\Card::all();
+
+    return view('collection.index', compact('cards'));
+});
+
+Route::get('/collection/{card}', function ($id) {
+    
+    $card = DB::table('cards')->find($id);
+
+    return view('collection.show', compact('card'));
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
