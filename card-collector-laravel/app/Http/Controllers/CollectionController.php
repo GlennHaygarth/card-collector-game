@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Card;
 
 class CollectionController extends Controller
@@ -15,9 +16,20 @@ class CollectionController extends Controller
     //
     public function index()
     {
+        $user_cards = Auth::user()->cards()->get();
+
+        // foreach(Auth::user()->cards() as $card)
+        // {
+        //     var_dump($card);
+        // }
+
+        // dd($user_cards);
+
+        // dd(\App\User::find(1)->cards()->get()->first()->name);
+
         $cards = Card::all();
 
-        return view('collection.index', compact('cards'));
+        return view('collection.index', compact('cards'), compact('user_cards'));
     }
 
     public function show($id)

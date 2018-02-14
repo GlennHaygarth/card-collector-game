@@ -45,17 +45,23 @@
                 <div class="card-header">Overview of all cards</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
                     @foreach ($cards as $card)
                         <li>
                             <a href="/collection/{{ $card->id }}">
                                 {{ $card->name }}
                             </a>
+                            value: {{ $card->value }}
+                        </li>
+                    @endforeach
+                </div>
+            </div>
+            <div class="card card-default">
+                <div class="card-header">Your deck</div>
+
+                <div class="card-body">
+                    @foreach ($user_cards as $card)
+                        <li>
+                            {{ $card->name }}
                             value: {{ $card->value }}
                         </li>
                     @endforeach
